@@ -598,9 +598,6 @@ const colorPicker =
 const progress =
   document.getElementById("progress");
 
-const downloadButton =
-  document.getElementById("download-button");
-
 // =====================
 // State
 // =====================
@@ -698,6 +695,10 @@ async function saveAndNext() {
     session_number: sessionNumber,
 
     response_index: currentTrial + 1,
+
+    script_type: currentTrial < 30
+        ? "arabic"
+        : "thai",
 
     symbol: symbol,
 
@@ -860,34 +861,6 @@ function finishExperiment() {
 
   console.log(responses);
 }
-
-// =====================
-// Download JSON
-// =====================
-
-downloadButton.addEventListener("click", () => {
-
-  const dataStr =
-    JSON.stringify(responses, null, 2);
-
-  const blob = new Blob(
-    [dataStr],
-    { type: "application/json" }
-  );
-
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-
-  a.href = url;
-
-  a.download =
-    `${participantId}_session${sessionNumber}.json`;
-
-  a.click();
-
-  URL.revokeObjectURL(url);
-});
 
 // =====================
 // HEX -> RGB
