@@ -1,0 +1,127 @@
+/* ===== 全体 ===== */
+
+body {
+  margin: 0;
+  background: #f2f2f2;
+  font-family: sans-serif;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== Progress ===== */
+
+#progress {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* ===== Layout ===== */
+
+#main-container {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ===== LEFT ===== */
+
+#palette-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#palette-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+/* ===== Canvas ===== */
+
+#palette {
+  border: 2px solid black;
+  cursor: crosshair;
+}
+
+#hue-bar {
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+#brightness-bar {
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+/* ===== RIGHT ===== */
+
+#right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+#symbol-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ===== Selected Color ===== */
+
+#selected-color-preview {
+  width: 140px;
+  height: 140px;
+  border: 3px solid black;
+  background: white;
+}
+
+/* ===== Thai Number ===== */
+
+#symbol-display {
+  font-size: 180px;
+  font-family:
+    "Noto Sans Thai",
+    sans-serif;
+}
+
+/* ===== Buttons ===== */
+
+button {
+  width: 260px;
+  height: 64px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+#reason-section {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, auto);
+
+  gap: 12px 24px;
+
+  font-size: 18px;
+
+  margin-bottom: 10px;
+}
+
+#reason-title {
+  grid-column: 1 / -1;
+
+  font-weight: bold;
+
+  margin-bottom: 8px;
+}

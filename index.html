@@ -1,0 +1,182 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thai Number Synesthesia Test</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Start Screen -->
+  <div id="start-screen" class="screen active">
+
+    <h1>文字と色の対応関係の調査</h1>
+
+    <div class="form-group">
+      <label>回答者ID</label>
+      <input type="text" id="participant-id" placeholder="例: P001">
+    </div>
+
+    <div class="form-group">
+
+  <label>何度目の実験ですか</label>
+  <select id="session-number">
+    <option value="1">
+      1回目
+    </option>
+    <option value="2">
+      2回目
+    </option>
+    <option value="3">
+      3回目
+    </option>
+  </select>
+</div>
+
+    <button id="start-button">回答開始</button>
+  </div>
+
+  <!-- experiment-screen の中身をこれに置き換え -->
+
+<div id="experiment-screen" class="screen">
+
+  <div id="main-container">
+
+    <!-- LEFT -->
+    <div id="palette-section">
+
+      <div id="palette-wrapper">
+
+        <!-- Main Palette -->
+        <canvas
+          id="palette"
+          width="420"
+          height="420">
+        </canvas>
+
+        <!-- Hue Bar -->
+        <canvas
+          id="hue-bar"
+          width="40"
+          height="420">
+        </canvas>
+
+      </div>
+
+      <!-- Brightness -->
+      <canvas
+        id="brightness-bar"
+        width="420"
+        height="40">
+      </canvas>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div id="right-section">
+
+      <div id="symbol-row">
+
+        <!-- Selected Color -->
+        <div id="selected-color-preview"></div>
+
+        <!-- Thai Number -->
+        <div id="symbol-display">๑</div>
+
+      </div>
+      <div id="reason-section">
+
+        <p id="reason-title">
+          色を選んだ根拠
+        </p>
+
+        <label>
+          <input
+            type="radio"
+            name="color-reason"
+            value="order">
+          順序
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="color-reason"
+            value="shape">
+          形
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="color-reason"
+            value="sound">
+          発音
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="color-reason"
+            value="familiarity">
+          親近感
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="color-reason"
+            value="meaning">
+          意味
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="color-reason"
+            value="memory">
+          特定の思い出
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="color-reason"
+            value="others">
+          その他
+        </label>
+
+      </div>
+      <div id="progress">1 / 30</div>
+
+      <button id="confirm-color-button">
+        色を決定
+      </button>
+
+      <button id="no-color-button">
+        色を感じない
+      </button>
+    </div>
+  </div>
+</div>
+
+  <!-- End Screen -->
+  <div id="end-screen" class="screen">
+
+    <h2>調査完了</h2>
+
+    <p>あなたの回答はJSONファイルに保存されました。ダウンロードした結果をFreeasyで送ってください。</p>
+
+    <button id="download-button">
+      Download JSON
+    </button>
+
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
