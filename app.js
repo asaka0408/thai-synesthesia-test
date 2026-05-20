@@ -683,7 +683,7 @@ function showTrial() {
 // Next Trial
 // =====================
 
-function saveAndNext() {
+async function saveAndNext() {
 
   const endTime = performance.now();
 
@@ -729,6 +729,52 @@ function saveAndNext() {
     timestamp:
       new Date().toISOString()
   });
+
+  await addDoc(
+
+  collection(db, "responses"),
+
+  {
+
+    participant_id: participantId,
+
+    session_number: sessionNumber,
+
+    response_index: currentTrial + 1,
+
+    symbol: symbol,
+
+    color_hex: noColor
+      ? null
+      : selectedColor.hex,
+
+    r: noColor
+      ? null
+      : selectedColor.r,
+
+    g: noColor
+      ? null
+      : selectedColor.g,
+
+    b: noColor
+      ? null
+      : selectedColor.b,
+
+    no_color: noColor,
+
+    reason: noColor
+      ? null
+      : getSelectedReason(),
+
+    reaction_time_ms:
+      Math.round(rt),
+
+    timestamp:
+      new Date().toISOString()
+  }
+);
+
+console.log("saved");
 
   // reset noColor
   noColor = false;
