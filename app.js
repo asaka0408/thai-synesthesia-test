@@ -688,6 +688,8 @@ async function saveAndNext() {
 
   const symbol = trials[currentTrial];
 
+  const isCompleted = currentTrial === trials.length - 1;
+
   responses.push({
 
     participant_id: participantId,
@@ -728,7 +730,9 @@ async function saveAndNext() {
       Math.round(rt),
 
     timestamp:
-      new Date().toISOString()
+      new Date().toISOString(),
+
+    completed: isCompleted
   });
 
   await addDoc(
