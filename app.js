@@ -649,12 +649,7 @@ function showTrial() {
     `${currentTrial + 1} / ${trials.length}`;
 
   preview.style.background = "white";
-  selectedColor = {
-    r: 255,
-    g: 255,
-    b: 255,
-    hex: "#ffffff"
-  };
+  selectedColor = null;
 
   noColor = false;
   paletteMarker = {
@@ -801,6 +796,26 @@ confirmColorButton.addEventListener(
   "click",
 
   () => {
+
+    // =====================
+    // color selected?
+    // =====================
+
+    if(selectedColor === null) {
+
+      alert(
+
+        "色を選択してください。もし白を選択したい場合は、カーソルを少し動かし白を再選択してください。"
+
+      );
+
+      return;
+
+    }
+
+    // =====================
+    // reason selected?
+    // =====================
 
     const selectedReason =
 
