@@ -1,127 +1,220 @@
-/* ===== 全体 ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
 
 body {
-  margin: 0;
-  background: #f2f2f2;
-  font-family: sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.screen {
-  display: none;
+#app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
 }
 
-.screen.active {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.main-content {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 50px);
+    overflow: hidden;
 }
 
-/* ===== Progress ===== */
-
-#progress {
-  font-size: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+/* Left Viewer Panel */
+.viewer-container {
+    flex: 1;
+    position: relative;
+    background-color: #000000;
 }
 
-/* ===== Layout ===== */
-
-#main-container {
-  display: flex;
-  gap: 80px;
-  align-items: center;
+#canvas-container {
+    width: 100%;
+    height: 100%;
 }
 
-/* ===== LEFT ===== */
-
-#palette-section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.info-overlay {
+    position: absolute;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    pointer-events: none;
+    z-index: 10;
 }
 
-#palette-wrapper {
-  display: flex;
-  gap: 20px;
+.top-left { top: 20px; left: 20px; }
+.bottom-left { bottom: 20px; left: 20px; }
+
+/* Right Control Panel */
+.control-panel {
+    width: 380px;
+    background-color: #f1f5f9;
+    border-left: 1px solid #e2e8f0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
 }
 
-/* ===== Canvas ===== */
-
-#palette {
-  border: 2px solid black;
-  cursor: crosshair;
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-#hue-bar {
-  border: 2px solid black;
-  cursor: pointer;
+.card h3 {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
-#brightness-bar {
-  border: 2px solid black;
-  cursor: pointer;
+/* Color Preview & Stimulus Row */
+.color-preview-row {
+    display: flex;
+    gap: 24px;
+    align-items: center;
 }
 
-/* ===== RIGHT ===== */
-
-#right-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
+.color-box {
+    width: 110px;
+    height: 110px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    border: 2px solid #cbd5e1;
+    transition: background-color 0.05s ease;
 }
 
-#symbol-row {
-  display: flex;
-  align-items: center;
-  gap: 40px;
+.stimulus-container-inline {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    height: 110px;
 }
 
-/* ===== Selected Color ===== */
-
-#selected-color-preview {
-  width: 140px;
-  height: 140px;
-  border: 3px solid black;
-  background: white;
+#stimulus-char {
+    font-size: 48px;
+    font-weight: bold;
+    color: #0f172a;
 }
 
-/* ===== Thai Number ===== */
-
-#symbol-display {
-  font-size: 180px;
-  font-family:
-    "Noto Sans Thai",
-    sans-serif;
+.hints-list {
+    list-style-type: none;
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
 }
 
-/* ===== Buttons ===== */
-
-button {
-  width: 260px;
-  height: 64px;
-  font-size: 28px;
-  cursor: pointer;
+.hints-list li::before {
+    content: "・";
+    color: #94a3b8;
 }
 
-#reason-section {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, auto);
-
-  gap: 12px 24px;
-
-  font-size: 18px;
-
-  margin-bottom: 10px;
+/* Progress Bar */
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-#reason-title {
-  grid-column: 1 / -1;
+#progress-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
 
-  font-weight: bold;
+.progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
 
-  margin-bottom: 8px;
+#progress-bar-fill {
+    height: 100%;
+    background-color: #3b82f6;
+    transition: width 0.3s ease;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.radio-group label {
+    font-size: 14px;
+    color: #334155;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.button-row {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #ffffff;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
+}
+
+.btn-primary:disabled {
+    background-color: #f1f5f9;
+    color: #94a3b8;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+}
+
+.btn-danger {
+    background-color: #ffffff;
+    color: #ef4444;
+    border: 2px solid #ef4444;
+}
+
+/* Bottom panel bar */
+.bottom-bar {
+    height: 50px;
+    background-color: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.trajectory-controls {
+    font-size: 13px;
+    color: #475569;
 }
