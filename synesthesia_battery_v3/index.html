@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thai Synesthesia Battery V3</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="app-container">
+        <!-- Main content area -->
+        <div class="main-content">
+            <!-- Left panel: 3D Viewer -->
+            <div class="viewer-container">
+                <div class="info-overlay top-left">
+                    L* (明度)：上下 (白 ↕ 黒)<br>
+                    a*：左右 (緑 ↔ 赤)<br>
+                    b*：奥行き (青 ↔ 黄)<br>
+                    球の上をドラッグして色を連続的に探索・選択してください
+                </div>
+                <div class="info-overlay bottom-left">
+                    操作方法：<br>
+                    ・ドラッグ：色の連続選択・変更<br>
+                    ・スクロール（ホイール）：拡大 / 縮小<br>
+                    ・クリック操作はありません。ドラッグで軌跡が保存されます。
+                </div>
+                <div id="canvas-container"></div>
+            </div>
+
+            <!-- Right panel: Controls and Inputs -->
+            <div class="control-panel">
+                <!-- Color Preview & Stimulus Block -->
+                <div class="card">
+                    <h3>選択中の色 ＆ 対象の文字</h3>
+                    <div class="color-preview-row">
+                        <!-- Color visual box only -->
+                        <div id="color-preview" class="color-box"></div>
+                        
+                        <!-- Stimulus display placed right next to the color box -->
+                        <div id="stimulus-display" class="stimulus-container-inline">
+                            <span id="stimulus-char">１</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hints Block -->
+                <div class="card">
+                    <h3>操作のヒント</h3>
+                    <ul class="hints-list">
+                        <li>球体の上をドラッグすると、触れた色が連続的に選択されます</li>
+                        <li>ドラッグ中の軌跡（60Hz）が自動的に保存されます</li>
+                        <li>マウスホイールで色の球体を拡大・縮小して詳細に探索できます</li>
+                    </ul>
+                </div>
+
+                <!-- Progress Block -->
+                <div class="card">
+                    <h3>実験の進行状況</h3>
+                    <div class="progress-container">
+                        <span id="progress-text">1 / 60</span>
+                        <div class="progress-bar-bg">
+                            <div id="progress-bar-fill" style="width: 1.67%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reason Selection Block -->
+                <div class="card">
+                    <h3>根拠を選択してください</h3>
+                    <div class="radio-group">
+                        <label><input type="radio" name="reason" value="文字の意味"> 文字の意味</label>
+                        <label><input type="radio" name="reason" value="数の概念"> 数の概念</label>
+                        <label><input type="radio" name="reason" value="形のイメージ"> 形のイメージ</label>
+                        <label><input type="radio" name="reason" value="音のイメージ"> 音のイメージ</label>
+                        <label><input type="radio" name="reason" value="直感"> 直感</label>
+                    </div>
+                    <div class="button-row">
+                        <button id="btn-submit" class="btn btn-primary" disabled>色を決定</button>
+                        <button id="btn-nocolor" class="btn btn-danger">色はない</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom panel: Trajectory status only -->
+        <div class="bottom-bar">
+            <div class="trajectory-controls">
+                <label>
+                    <input type="checkbox" id="chk-show-trajectory" checked> 探索軌跡を表示
+                </label>
+                <span class="trajectory-length">
+                    探索軌跡の長さ: <strong id="trajectory-len-val">0.00</strong> (Lab空間距離の累積値)
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Scripts -->
+    <script src="js/firebase.js"></script>
+    <script src="js/trajectory.js"></script>
+    <script src="js/viewer.js"></script>
+    <script src="js/trial.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
